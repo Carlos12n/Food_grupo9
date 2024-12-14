@@ -59,10 +59,12 @@ import facebook_icon from './facebook_icon.png'
 import twitter_icon from './twitter_icon.png'
 import cross_icon from './cross_icon.png'
 import selector_icon from './selector_icon.png'
+import un_checked from './un_checked.png'
 
 export const assets = {
     logo,
     basket_icon,
+    un_checked,
     header_img,
     parcel_icon,
     bag_icon,
