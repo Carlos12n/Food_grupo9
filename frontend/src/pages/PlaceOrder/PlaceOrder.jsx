@@ -53,7 +53,7 @@ const PlaceOrder = () => {
                 window.location.replace(session_url);
             }
             else {
-                toast.error("Something Went Wrong")
+                toast.error("Algo saliò mal")
             }
         }
         else{
@@ -64,7 +64,7 @@ const PlaceOrder = () => {
                 setCartItems({});
             }
             else {
-                toast.error("Something Went Wrong")
+                toast.error("Algo salió mal")
             }
         }
 
@@ -106,23 +106,27 @@ const PlaceOrder = () => {
                     <div>
                         <div className="cart-total-details"><p>Subtotal</p><p>{currency}{getTotalCartAmount()}</p></div>
                         <hr />
-                        <div className="cart-total-details"><p>Delivery Fee</p><p>{currency}{getTotalCartAmount() === 0 ? 0 : deliveryCharge}</p></div>
+                        <div className="cart-total-details"><p>Costo Delivery</p><p>{currency}{getTotalCartAmount() === 0 ? 0 : deliveryCharge}</p></div>
                         <hr />
                         <div className="cart-total-details"><b>Total</b><b>{currency}{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + deliveryCharge}</b></div>
                     </div>
                 </div>
                 <div className="payment">
-                    <h2>Payment Method</h2>
+                    <h2>Medio de Pago</h2>
                     <div onClick={() => setPayment("cod")} className="payment-option">
                         <img src={payment === "cod" ? assets.checked : assets.un_checked} alt="" />
-                        <p>COD ( Cash on delivery )</p>
+                        <p>COD ( Efectivo en entrega )</p>
                     </div>
                     <div onClick={() => setPayment("stripe")} className="payment-option">
                         <img src={payment === "stripe" ? assets.checked : assets.un_checked} alt="" />
                         <p>Stripe ( Credit / Debit )</p>
                     </div>
+                    <div onClick={() => setPayment("stripe")} className="payment-option">
+                        <img src={payment === "stripe" ? assets.checked : assets.un_checked} alt="" />
+                        <p>Mercado Pago ( Credit / Debit )</p>
+                    </div>
                 </div>
-                <button className='place-order-submit' type='submit'>{payment==="cod"?"Place Order":"Proceed To Payment"}</button>
+                <button className='place-order-submit' type='submit'>{payment==="cod"?"ORDENAR":"IR A PAGAR"}</button>
             </div>
         </form>
     )
