@@ -86,15 +86,15 @@ export const assets = {
 
 export const menu_list = [
     {
-        menu_name: "Salad",
+        menu_name: "Ensaladas",
         menu_image: menu_1
     },
     {
-        menu_name: "Rolls",
+        menu_name: "Tacos",
         menu_image: menu_2
     },
     {
-        menu_name: "Deserts",
+        menu_name: "Helados",
         menu_image: menu_3
     },
     {
@@ -102,11 +102,11 @@ export const menu_list = [
         menu_image: menu_4
     },
     {
-        menu_name: "Cake",
+        menu_name: "Pastel",
         menu_image: menu_5
     },
     {
-        menu_name: "Pure Veg",
+        menu_name: "Vegetales",
         menu_image: menu_6
     },
     {
@@ -114,7 +114,7 @@ export const menu_list = [
         menu_image: menu_7
     },
     {
-        menu_name: "Noodles",
+        menu_name: "Fideos",
         menu_image: menu_8
     }]
 
@@ -125,22 +125,22 @@ export const food_list = [
         food_image: food_1,
         food_price: 12,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Salad"
+        food_category: "Ensaladas"
     },
     {
         food_id: 2,
-        food_name: "Veg salad",
+        food_name: "Ensalada de vegetales",
         food_image: food_2,
         food_price: 18,
-        food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Salad"
+        food_desc: "Ensalada de vetales variados",
+        food_category: "Ensaladas"
     }, {
         food_id: 3,
         food_name: "Clover Salad",
         food_image: food_3,
         food_price: 16,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Salad"
+        food_category: "Ensaladas"
     }, {
         food_id: 4,
         food_name: "Chicken Salad",
@@ -150,18 +150,18 @@ export const food_list = [
         food_category: "Salad"
     }, {
         food_id: 5,
-        food_name: "Lasagna Rolls",
+        food_name: "Tacos de Lasagna",
         food_image: food_5,
         food_price: 14,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Rolls"
+        food_category: "Tacos"
     }, {
         food_id: 6,
-        food_name: "Peri Peri Rolls",
+        food_name: "Peri Peri Tacos",
         food_image: food_6,
         food_price: 12,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Rolls"
+        food_category: "Tacos"
     }, {
         food_id: 7,
         food_name: "Chicken Rolls",
@@ -189,21 +189,21 @@ export const food_list = [
         food_image: food_10,
         food_price: 22,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Deserts"
+        food_category: "helados"
     }, {
         food_id: 11,
         food_name: "Jar Ice Cream",
         food_image: food_11,
         food_price: 10,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Deserts"
+        food_category: "Helados"
     }, {
         food_id: 12,
         food_name: "Vanilla Ice Cream",
         food_image: food_12,
         food_price: 12,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Deserts"
+        food_category: "Helados"
     },
     {
         food_id: 13,
@@ -240,56 +240,56 @@ export const food_list = [
         food_image: food_17,
         food_price: 14,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Cake"
+        food_category: "Pastel"
     }, {
         food_id: 18,
         food_name: "Vegan Cake",
         food_image: food_18,
         food_price: 12,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Cake"
+        food_category: "Pastel"
     }, {
         food_id: 19,
         food_name: "Butterscotch Cake",
         food_image: food_19,
         food_price: 20,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Cake"
+        food_category: "Pastel"
     }, {
         food_id: 20,
         food_name: "Sliced Cake",
         food_image: food_20,
         food_price: 15,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Cake"
+        food_category: "Pastel"
     }, {
         food_id: 21,
         food_name: "Garlic Mushroom ",
         food_image: food_21,
         food_price: 14,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Pure Veg"
+        food_category: "Vegetales"
     }, {
         food_id: 22,
         food_name: "Fried Cauliflower",
         food_image: food_22,
         food_price: 22,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Pure Veg"
+        food_category: "Vegetales"
     }, {
         food_id: 23,
         food_name: "Mix Veg Pulao",
         food_image: food_23,
         food_price: 10,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Pure Veg"
+        food_category: "Vegetales"
     }, {
         food_id: 24,
         food_name: "Rice Zucchini",
         food_image: food_24,
         food_price: 12,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Pure Veg"
+        food_category: "Vegetales"
     },
     {
         food_id: 25,
@@ -326,21 +326,21 @@ export const food_list = [
         food_image: food_29,
         food_price: 14,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Noodles"
+        food_category: "Fideos"
     }, {
         food_id: 30,
         food_name: "Veg Noodles",
         food_image: food_30,
         food_price: 12,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Noodles"
+        food_category: "Fideos"
     }, {
         food_id: 31,
         food_name: "Somen Noodles",
         food_image: food_31,
         food_price: 20,
         food_desc: "Food provides essential nutrients for overall health and well-being",
-        food_category: "Noodles"
+        food_category: "Fideos"
     }, {
         food_id: 32,
         food_name: "Cooked Noodles",

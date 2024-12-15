@@ -63,7 +63,7 @@ const Add = () => {
                 </div>
                 <div className='add-product-name flex-col'>
                     <p>Nombre de producto</p>
-                    <input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Type here' required />
+                    <input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Tipo de comida' required />
                 </div>
                 <div className='add-product-description flex-col'>
                     <p>Producto descripción</p>
@@ -73,14 +73,14 @@ const Add = () => {
                     <div className='add-category flex-col'>
                         <p>Product categoría</p>
                         <select name='category' onChange={onChangeHandler} >
-                            <option value="Salad">Salad</option>
-                            <option value="Rolls">Rolls</option>
-                            <option value="Deserts">Deserts</option>
+                            <option value="Ensaladas">Ensaladas</option>
+                            <option value="Tacos">Tacos</option>
+                            <option value="Helados">Helados</option>
                             <option value="Sandwich">Sandwich</option>
-                            <option value="Cake">Cake</option>
-                            <option value="Pure Veg">Pure Veg</option>
+                            <option value="Pastel">Pastel</option>
+                            <option value="Vegetales">Vegetales</option>
                             <option value="Pasta">Pasta</option>
-                            <option value="Noodles">Noodles</option>
+                            <option value="Fideos">Fideos</option>
                         </select>
                     </div>
                     <div className='add-price flex-col'>
@@ -88,7 +88,7 @@ const Add = () => {
                         <input type="Number" name='price' onChange={onChangeHandler} value={data.price} placeholder='25' />
                     </div>
                 </div>
-                <button type='submit' className='add-btn' >Aañadir</button>
+                <button type='submit' className='add-btn' >Añadir</button>
             </form>
         </div>
     )
