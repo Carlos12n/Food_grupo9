@@ -12,7 +12,7 @@ const Cart = () => {
     <div className='cart'>
       <div className="cart-items">
         <div className="cart-items-title">
-          <p>Items</p> <p>Title</p> <p>Price</p> <p>Quantity</p> <p>Total</p> <p>Remove</p>
+          <p>Items</p> <p>Titulo</p> <p>Precio</p> <p>Cantidad</p> <p>Total</p> <p>Eliminar</p>
         </div>
         <br />
         <hr />
@@ -42,14 +42,14 @@ const Cart = () => {
             <hr />
             <div className="cart-total-details"><b>Total</b><b>{currency}{getTotalCartAmount()===0?0:getTotalCartAmount()+deliveryCharge}</b></div>
           </div>
-          <button onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
+          <button onClick={()=>navigate('/order')}>PROCEDER A PAGAR</button>
         </div>
         <div className="cart-promocode">
           <div>
             <p>Si tienes un código promocional, ingrésalo aquí</p>
             <div className='cart-promocode-input'>
               <input type="text" placeholder='promo code'/>
-              <button>Submit</button>
+              <button>Enviar</button>
             </div>
           </div>
         </div>

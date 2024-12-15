@@ -83,7 +83,7 @@ const PlaceOrder = () => {
     return (
         <form onSubmit={placeOrder} className='place-order'>
             <div className="place-order-left">
-                <p className='title'>Delivery Information</p>
+                <p className='title'>Información del Deliveri</p>
                 <div className="multi-field">
                     <input type="text" name='firstName' onChange={onChangeHandler} value={data.firstName} placeholder='First name' required />
                     <input type="text" name='lastName' onChange={onChangeHandler} value={data.lastName} placeholder='Last name' required />
@@ -102,11 +102,11 @@ const PlaceOrder = () => {
             </div>
             <div className="place-order-right">
                 <div className="cart-total">
-                    <h2>Cart Totals</h2>
+                    <h2>Total Carrito</h2>
                     <div>
                         <div className="cart-total-details"><p>Subtotal</p><p>{currency}{getTotalCartAmount()}</p></div>
                         <hr />
-                        <div className="cart-total-details"><p>Costo Delivery</p><p>{currency}{getTotalCartAmount() === 0 ? 0 : deliveryCharge}</p></div>
+                        <div className="cart-total-details"><p>Costo Deliveri</p><p>{currency}{getTotalCartAmount() === 0 ? 0 : deliveryCharge}</p></div>
                         <hr />
                         <div className="cart-total-details"><b>Total</b><b>{currency}{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + deliveryCharge}</b></div>
                     </div>
