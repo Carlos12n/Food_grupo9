@@ -1,10 +1,15 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js"
 import Stripe from "stripe";
+import mercadopago from "mercadopago";
+mercadopago.configure({
+    access_token: process.env.MERCADOPAGO_ACCESS_TOKEN,
+  });
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+
 //config variables
-const currency = "usd";
+const currency = "ars";
 const deliveryCharge = 5;
 const frontend_URL = 'http://localhost:5173';
 
@@ -23,7 +28,7 @@ const placeOrder = async (req, res) => {
 
         const line_items = req.body.items.map((item) => ({
             price_data: {
-                currency: "usd",
+                currency: currency,
                 product_data: {
                     name: item.name
                 },
@@ -34,7 +39,7 @@ const placeOrder = async (req, res) => {
 
         line_items.push({
             price_data: {
-                currency: "usd",
+                currency: currency,
                 product_data: {
                     name: "Delivery Charge"
                 },
@@ -57,6 +62,60 @@ const placeOrder = async (req, res) => {
         res.json({ success: false, message: "Error" })
     }
 }
+
+//mercadoPago
+const placeMercadoPago = async (req, res) => {
+    try {
+      // Crear nueva orden en la base de datos
+      const newOrder = new orderModel({
+        userId: req.body.userId,
+        items: req.body.items,
+        amount: req.body.amount,
+        address: req.body.address,
+      });
+      await newOrder.save();
+      await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
+  
+      // Crear las preferencias de pago para Mercado Pago
+      const items = req.body.items.map((item) => ({
+        title: item.name,
+        unit_price: item.price,
+        quantity: item.quantity,
+        currency_id: currency.toUpperCase(),
+      }));
+  
+      items.push({
+        title: "Delivery Charge",
+        unit_price: deliveryCharge,
+        quantity: 1,
+        currency_id: currency.toUpperCase(),
+      });
+  
+      const preference = {
+        items: items,
+        back_urls: {
+          success: `${frontend_URL}/verify?success=true&orderId=${newOrder._id}`,
+          failure: `${frontend_URL}/verify?success=false&orderId=${newOrder._id}`,
+          pending: `${frontend_URL}/verify?success=false&orderId=${newOrder._id}`,
+        },
+        auto_return: "approved",
+        external_reference: newOrder._id.toString(),
+      };
+  
+      const response = await mercadopago.preferences.create(preference);
+  
+      res.json({
+        success: true,
+        init_point: response.body.init_point, // URL para redirigir al usuario a Mercado Pago
+      });
+    } catch (error) {
+      console.error(error);
+      res.json({
+        success: false,
+        message: "Error al generar la orden para Mercado Pago",
+      });
+    }
+  };
 
 // Placing User Order for Frontend using stripe
 const placeOrderCod = async (req, res) => {
@@ -130,4 +189,4 @@ const verifyOrder = async (req, res) => {
 
 }
 
-export { placeOrder, listOrders, userOrders, updateStatus, verifyOrder, placeOrderCod }
+export { placeOrder, listOrders, userOrders, updateStatus, verifyOrder, placeOrderCod, placeMercadoPago }
