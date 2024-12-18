@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <div className='navbar'>
       <img className='logo' src={assets.logo} alt="" />
-      <p>Bienvenido al panel de administracion de Food Ctes</p>
+      <p>Bienvenido al panel de administracion de Fud Ctes</p>
       <img className='profile' src={assets.profile_image} alt="" />
     </div>
   )
