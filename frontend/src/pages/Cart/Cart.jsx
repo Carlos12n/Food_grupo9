@@ -38,7 +38,7 @@ const Cart = () => {
           <div>
             <div className="cart-total-details"><p>Subtotal</p><p>{currency}{getTotalCartAmount()}</p></div>
             <hr />
-            <div className="cart-total-details"><p>Delivery Fee</p><p>{currency}{getTotalCartAmount()===0?0:deliveryCharge}</p></div>
+            <div className="cart-total-details"><p>Costo Delivery</p><p>{currency}{getTotalCartAmount()===0?0:deliveryCharge}</p></div>
             <hr />
             <div className="cart-total-details"><b>Total</b><b>{currency}{getTotalCartAmount()===0?0:getTotalCartAmount()+deliveryCharge}</b></div>
           </div>
@@ -48,7 +48,7 @@ const Cart = () => {
           <div>
             <p>Si tienes un código promocional, ingrésalo aquí</p>
             <div className='cart-promocode-input'>
-              <input type="text" placeholder='promo code'/>
+              <input type="text" placeholder='código promocion'/>
               <button>Enviar</button>
             </div>
           </div>

@@ -68,3 +68,24 @@
         flex-direction: column;
     }
 }
+.payment-option {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.payment-option:hover {
+    background-color: #f0f0f0;
+}
+
+.payment-option.selected {
+    background-color: #2271b3 ; /*  */
+    border-color: #fb8c00; /* Bordes más oscuros */
+    color: white;
+}

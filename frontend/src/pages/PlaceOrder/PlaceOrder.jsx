@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'; // Importa React y hooks
-import './PlaceOrder.css'; // Importa estilos específicos para este componente
-import { StoreContext } from '../../Context/StoreContext'; // Contexto global para datos de la tienda
-import { assets } from '../../assets/assets'; // Recursos como imágenes o iconos
-import { useNavigate } from 'react-router-dom'; // Hook para navegar entre rutas
-import { toast } from 'react-toastify'; // Biblioteca para mostrar notificaciones
-import axios from 'axios'; // Cliente HTTP para realizar solicitudes al backend
+import React, { useContext, useEffect, useState } from 'react';
+import './PlaceOrder.css';
+import { StoreContext } from '../../Context/StoreContext';
+import { assets } from '../../assets/assets';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const PlaceOrder = () => {
-    const [payment, setPayment] = useState("cod"); // Estado para el método de pago seleccionado
+    const [payment, setPayment] = useState("cod");
     const [data, setData] = useState({
         firstName: "",
         lastName: "",
@@ -45,14 +45,7 @@ const PlaceOrder = () => {
         };
 
         try {
-            if (payment === "stripe") {
-                let response = await axios.post(`${url}/api/order/place`, orderData, { headers: { token } });
-                if (response.data.success) {
-                    window.location.replace(response.data.session_url);
-                } else {
-                    toast.error("Algo salió mal con Stripe.");
-                }
-            } else if (payment === "mercadopago") {
+            if (payment === "mercadopago") {
                 let response = await axios.post(`${url}/api/order/placemercadopago`, orderData, { headers: { token } });
                 if (response.data.success) {
                     window.location.replace(response.data.init_point);
@@ -88,44 +81,67 @@ const PlaceOrder = () => {
             <div className="place-order-left">
                 <p className='title'>Información del Delivery</p>
                 <div className="multi-field">
-                    <input type="text" name='firstName' onChange={onChangeHandler} value={data.firstName} placeholder='First name' required />
-                    <input type="text" name='lastName' onChange={onChangeHandler} value={data.lastName} placeholder='Last name' required />
+                    <input type="text" name='firstName' onChange={onChangeHandler} value={data.firstName} placeholder='nombre' required />
+                    <input type="text" name='lastName' onChange={onChangeHandler} value={data.lastName} placeholder='apellido' required />
                 </div>
-                <input type="email" name='email' onChange={onChangeHandler} value={data.email} placeholder='Email address' required />
-                <input type="text" name='street' onChange={onChangeHandler} value={data.street} placeholder='Street' required />
+                <input type="email" name='email' onChange={onChangeHandler} value={data.email} placeholder='email' required />
+                <input type="text" name='street' onChange={onChangeHandler} value={data.street} placeholder='calle' required />
                 <div className="multi-field">
-                    <input type="text" name='city' onChange={onChangeHandler} value={data.city} placeholder='City' required />
-                    <input type="text" name='state' onChange={onChangeHandler} value={data.state} placeholder='State' required />
+                    <input type="text" name='city' onChange={onChangeHandler} value={data.city} placeholder='ciudad' required />
+                    <input type="text" name='state' onChange={onChangeHandler} value={data.state} placeholder='provinvia' required />
                 </div>
                 <div className="multi-field">
-                    <input type="text" name='zipcode' onChange={onChangeHandler} value={data.zipcode} placeholder='Zip code' required />
-                    <input type="text" name='country' onChange={onChangeHandler} value={data.country} placeholder='Country' required />
+                    <input type="text" name='zipcode' onChange={onChangeHandler} value={data.zipcode} placeholder='codigo postal' required />
+                    <input type="text" name='country' onChange={onChangeHandler} value={data.country} placeholder='pais' required />
                 </div>
                 <input type="text" name='phone' onChange={onChangeHandler} value={data.phone} placeholder='Phone' required />
             </div>
 
             <div className="place-order-right">
                 <div className="cart-total">
-                    <h2>Total Carrito</h2>
-                    <div>
-                        <div className="cart-total-details"><p>Subtotal</p><p>{currency}{getTotalCartAmount()}</p></div>
-                        <hr />
-                        <div className="cart-total-details"><p>Costo Delivery</p><p>{currency}{deliveryCharge}</p></div>
-                        <hr />
-                        <div className="cart-total-details"><b>Total</b><b>{currency}{getTotalCartAmount() + deliveryCharge}</b></div>
+                    <h2>Detalle del Carrito</h2>
+                    <div className="cart-items">
+                        {food_list.map((item) => {
+                            const quantity = cartItems[item._id] || 0;
+                            if (quantity > 0) {
+                                return (
+                                    <div key={item._id} className="cart-item">
+                                        <p>{item.name}</p>
+                                        <p>Cantidad: {quantity}</p>
+                                        <p>Subtotal: {currency}{(item.price * quantity).toFixed(2)}</p>
+                                    </div>
+                                );
+                            }
+                            return null;
+                        })}
+                    </div>
+                    <hr />
+                    <div className="cart-total-details">
+                        <p>Subtotal</p>
+                        <p>{currency}{getTotalCartAmount()}</p>
+                    </div>
+                    <div className="cart-total-details">
+                        <p>Costo Delivery</p>
+                        <p>{currency}{deliveryCharge}</p>
+                    </div>
+                    <hr />
+                    <div className="cart-total-details">
+                        <b>Total</b>
+                        <b>{currency}{getTotalCartAmount() + deliveryCharge}</b>
                     </div>
                 </div>
+
                 <div className="payment">
                     <h2>Medio de Pago</h2>
-                    <div onClick={() => setPayment("cod")} className="payment-option">
+                    <div
+                        onClick={() => setPayment("cod")}
+                        className={`payment-option ${payment === "cod" ? "selected" : ""}`}>
                         <img src={payment === "cod" ? assets.checked : assets.un_checked} alt="" />
                         <p>COD (Efectivo en entrega)</p>
                     </div>
-                    <div onClick={() => setPayment("stripe")} className="payment-option">
-                        <img src={payment === "stripe" ? assets.checked : assets.un_checked} alt="" />
-                        <p>Stripe (Credit / Debit)</p>
-                    </div>
-                    <div onClick={() => setPayment("mercadopago")} className="payment-option">
+                    <div
+                        onClick={() => setPayment("mercadopago")}
+                        className={`payment-option ${payment === "mercadopago" ? "selected" : ""}`}>
                         <img src={payment === "mercadopago" ? assets.checked : assets.un_checked} alt="" />
                         <p>Mercado Pago (Credit / Debit)</p>
                     </div>
@@ -137,3 +153,4 @@ const PlaceOrder = () => {
 };
 
 export default PlaceOrder;
+
